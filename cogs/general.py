@@ -1,13 +1,12 @@
-from discord.ext import commands
+import time
 
-import datetime
+from discord.ext import commands
 
 
 class General(commands.Cog):
 
 	def __init__(self, bot):
 		self.bot = bot
-		self.start_time = datetime.datetime.utcnow()
 
 	@commands.command(description='Shows the bot’s ping to Discord')
 	async def ping(self, ctx):
@@ -19,17 +18,12 @@ class General(commands.Cog):
 
 	@commands.command(description='Shows how long the bot has been online for')
 	async def uptime(self, ctx):
-		now = datetime.datetime.utcnow()
-		delta = now - self.start_time
-		hours, remainder = divmod(int(delta.total_seconds()), 3600)
-		minutes, seconds = divmod(remainder, 60)
-		days, hours = divmod(hours, 24)
-		if days:
-			time_format = "**{d}** days, **{h}** hours, **{m}** minutes, and **{s}** seconds."
-		else:
-			time_format = "**{h}** hours, **{m}** minutes, and **{s}** seconds."
-		uptime_stamp = time_format.format(d=days, h=hours, m=minutes, s=seconds)
-		await ctx.send(f'{self.bot.name} has been up for {uptime_stamp}')
+		seconds = time.time() - self.bot.start_time
+		m, s = divmod(seconds, 60)
+		h, m = divmod(m, 60)
+		d, h = divmod(h, 24)
+		w, d = divmod(d, 7)
+		await ctx.send(f"I've been online for `{int(w)}w : {int(d)}d : {int(h)}h : {int(m)}m : {int(s)}s`")
 
 
 def setup(bot):

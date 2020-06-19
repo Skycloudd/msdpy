@@ -2,7 +2,11 @@ from discord.ext import commands
 
 
 class Roles(commands.Cog):
-	@commands.command()
+
+	def __init__(self, bot):
+		self.bot = bot
+
+	@commands.command(description='Gives the iOS Guide role')
 	async def iosguide(self, ctx):
 		user = ctx.author
 
@@ -17,7 +21,7 @@ class Roles(commands.Cog):
 			await user.add_roles(role)
 			await ctx.send("You are now an iOS Guide")
 
-	@commands.command()
+	@commands.command(description='Gives the Android Guide role')
 	async def androidguide(self, ctx):
 		user = ctx.author
 
@@ -32,7 +36,7 @@ class Roles(commands.Cog):
 			await user.add_roles(role)
 			await ctx.send("You are now an Android Guide")
 
-	@commands.command()
+	@commands.command(description='Gives the streamer role')
 	async def streamer(self, ctx):
 		user = ctx.author
 
@@ -47,7 +51,7 @@ class Roles(commands.Cog):
 			await user.add_roles(role)
 			await ctx.send("You are now a streamer")
 
-	@commands.command()
+	@commands.command(description='Gives the developer role')
 	async def developer(self, ctx):
 		user = ctx.author
 
