@@ -5,3 +5,4 @@ To get started make a file called .env and add your bot token
 ```
 DISCORD_TOKEN=your-token-here
 ```
+After that install dependencies with `pip install -r requirements.txt`
