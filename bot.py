@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix='.')
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
-logchannel_id = 675333548697321483
+logchannel_id = 712939118560018442
 server_id = 377268230646923265
 
 
@@ -63,17 +63,22 @@ async def on_message_edit(before, after):
 
 	channel = client.get_channel(logchannel_id)
 
-	embed = discord.Embed(
-		title='Edited Message',
-		color=16777210,
-		timestamp=after.edited_at
-	)
-	embed.add_field(name='User', value=before.author.mention, inline=True)
-	embed.add_field(name='Channel', value=before.channel.mention, inline=True)
-	embed.add_field(name='Original Message', value=before.content, inline=False)
-	embed.add_field(name='New Message', value=after.content, inline=False)
+	# weird TypeError here with the timestamp
+	try:
+		embed = discord.Embed(
+			title='Edited Message',
+			color=16777210,
+			timestamp=after.edited_at
+		)
+		embed.add_field(name='User', value=before.author.mention, inline=True)
+		embed.add_field(name='Channel', value=before.channel.mention, inline=True)
+		embed.add_field(name='Original Message', value=before.content, inline=False)
+		embed.add_field(name='New Message', value=after.content, inline=False)
 
-	await channel.send(embed=embed)
+		await channel.send(embed=embed)
+
+	except TypeError:
+		print("TypeError in logging")
 
 
 client.run(token)
