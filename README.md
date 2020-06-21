@@ -1,8 +1,10 @@
 # Project msd.py
 This is the offical Mobile Speedrunning Discord bot.
 
-To get started make a file called .env and add your bot token
+To get started make a file called `config.json` and add your bot token
+```json
+{
+	"token":"YOUR TOKEN HERE"
+}
 ```
-DISCORD_TOKEN=your-token-here
-```
-After that install dependencies with `pip install -r requirements.txt`
+After that install dependencies with `python -m pip install -r requirements.txt`
