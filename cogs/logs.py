@@ -10,7 +10,7 @@ class Logs(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message_delete(self, msg):
 
-		channel = self.bot.get_channel(int(self.bot.config[str(msg.message.guild.id)]["log_channel"]))
+		channel = self.bot.get_channel(int(self.bot.config[str(msg.guild.id)]["log_channel"]))
 
 		embed = discord.Embed(
 			title='Deleted Message',
@@ -26,7 +26,7 @@ class Logs(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message_edit(self, before, after):
 
-		channel = self.bot.get_channel(int(self.bot.config[str(after.message.guild.id)]["log_channel"]))
+		channel = self.bot.get_channel(int(self.bot.config[str(after.guild.id)]["log_channel"]))
 
 		try:
 			embed = discord.Embed(
