@@ -119,7 +119,7 @@ class Admin(commands.Cog):
 			await ctx.send("You need to name someone to mute")
 			return
 		elif type(members)==str:
-			members = self.bot.get_user(int(members[0]))
+			members = self.bot.get_user(int(members))
 
 		#muted_role = discord.utils.find(ctx.guild.roles, name="Muted")
 		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["mute_role"]))
@@ -143,7 +143,7 @@ class Admin(commands.Cog):
 			await ctx.send("You need to name someone to unmute")
 			return
 		elif type(members)==str:
-			members = self.bot.get_user(int(members[0]))
+			members = self.bot.get_user(int(members))
 
 		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["mute_role"]))
 		for i in members:
