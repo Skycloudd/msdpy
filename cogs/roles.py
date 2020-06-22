@@ -9,65 +9,49 @@ class Roles(commands.Cog):
 	@commands.command(description='Gives the iOS Guide role')
 	async def iosguide(self, ctx):
 		user = ctx.author
-		msd_guild = self.bot.get_guild(377268230646923265)
+		iosguide_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["iosguide_role"]))
 
-		iosguide_id = 680299245982449686
-
-		role = msd_guild.get_role(iosguide_id)
-
-		if role in user.roles:
-			await user.remove_roles(role)
+		if iosguide_role in user.roles:
+			await user.remove_roles(iosguide_role)
 			await ctx.send('You are no longer an iOS Guide')
 		else:
-			await user.add_roles(role)
+			await user.add_roles(iosguide_role)
 			await ctx.send("You are now an iOS Guide")
 
 	@commands.command(description='Gives the Android Guide role')
 	async def androidguide(self, ctx):
 		user = ctx.author
-		msd_guild = self.bot.get_guild(377268230646923265)
+		androidguide_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["androidguide_role"]))
 
-		androidguide_id = 680298568841560085
-
-		role = msd_guild.get_role(androidguide_id)
-
-		if role in user.roles:
-			await user.remove_roles(role)
+		if androidguide_role in user.roles:
+			await user.remove_roles(androidguide_role)
 			await ctx.send('You are no longer an Android Guide')
 		else:
-			await user.add_roles(role)
+			await user.add_roles(androidguide_role)
 			await ctx.send("You are now an Android Guide")
 
 	@commands.command(description='Gives the streamer role')
 	async def streamer(self, ctx):
 		user = ctx.author
-		msd_guild = self.bot.get_guild(377268230646923265)
+		streamer_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["streamer_role"]))
 
-		streamer_id = 680474671480569974
-
-		role = msd_guild.get_role(streamer_id)
-
-		if role in user.roles:
-			await user.remove_roles(role)
+		if streamer_role in user.roles:
+			await user.remove_roles(streamer_role)
 			await ctx.send('You are no longer a streamer')
 		else:
-			await user.add_roles(role)
+			await user.add_roles(streamer_role)
 			await ctx.send("You are now a streamer")
 
 	@commands.command(description='Gives the developer role')
 	async def developer(self, ctx):
 		user = ctx.author
-		msd_guild = self.bot.get_guild(377268230646923265)
+		dev_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["dev_role"]))
 
-		developer_id = 723564210042437662
-
-		role = msd_guild.get_role(developer_id)
-
-		if role in user.roles:
-			await user.remove_roles(role)
+		if dev_role in user.roles:
+			await user.remove_roles(dev_role)
 			await ctx.send('You are no longer a developer')
 		else:
-			await user.add_roles(role)
+			await user.add_roles(dev_role)
 			await ctx.send("You are now a developer")
 
 
