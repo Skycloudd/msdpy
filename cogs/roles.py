@@ -11,7 +11,7 @@ class Roles(commands.Cog):
 		user = ctx.author
 		msd_guild = self.bot.get_guild(377268230646923265)
 
-		iosguide_id = 680299245982449686
+		iosguide_id = int(self.bot.config[str(msd_guild.id)]["iosguide_role"])
 
 		role = msd_guild.get_role(iosguide_id)
 
@@ -27,7 +27,7 @@ class Roles(commands.Cog):
 		user = ctx.author
 		msd_guild = self.bot.get_guild(377268230646923265)
 
-		androidguide_id = 680298568841560085
+		androidguide_id = int(self.bot.config[str(msd_guild.id)]["androidguide_role"])
 
 		role = msd_guild.get_role(androidguide_id)
 
@@ -43,7 +43,7 @@ class Roles(commands.Cog):
 		user = ctx.author
 		msd_guild = self.bot.get_guild(377268230646923265)
 
-		streamer_id = 680474671480569974
+		streamer_id = int(self.bot.config[str(msd_guild.id)]["streamer_role"])
 
 		role = msd_guild.get_role(streamer_id)
 
@@ -59,7 +59,7 @@ class Roles(commands.Cog):
 		user = ctx.author
 		msd_guild = self.bot.get_guild(377268230646923265)
 
-		developer_id = 723564210042437662
+		developer_id = int(self.bot.config[str(msd_guild.id)]["dev_role"])
 
 		role = msd_guild.get_role(developer_id)
 
