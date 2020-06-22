@@ -122,7 +122,7 @@ class Admin(commands.Cog):
 			members = self.bot.get_user(int(user))
 
 		#muted_role = discord.utils.find(ctx.guild.roles, name="Muted")
-		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.message.guild.id)]["mute_role"]))
+		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["mute_role"]))
 		for member in members:
 			if self.bot.user == member: # what good is a muted bot?
 				embed = discord.Embed(title = "You can't mute me, I'm an almighty bot")
@@ -145,7 +145,7 @@ class Admin(commands.Cog):
 		elif type(members)==str:
 			members = self.bot.get_user(int(user))
 
-		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.message.guild.id)]["mute_role"]))
+		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["mute_role"]))
 		for i in members:
 			await i.remove_roles(muted_role)
 			await ctx.send(f"{i} has been unmuted by {ctx.author}")
