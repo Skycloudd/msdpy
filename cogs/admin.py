@@ -9,7 +9,7 @@ class Admin(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
-	async def is_mod(self, ctx):
+	async def is_mod(ctx):
 		return ctx.author.guild_permissions.manage_channels
 
 	@commands.command(aliases=['quit'], hidden=True)
