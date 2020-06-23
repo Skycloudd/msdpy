@@ -59,7 +59,7 @@ class MsdBot(commands.Bot):
 	async def on_message(self, msg):
 		if msg.author.bot:
 			return
-		if not msg.author.guild:
+		if not msg.guild:
 			return
 		if msg.author.id in self.config['blacklist']:
 			return
