@@ -91,5 +91,10 @@ class General(commands.Cog):
 	async def roll(self, ctx, pool):
 		await ctx.send(f"You rolled a {randint(0, int(pool))}")
 
+	@commands.Cog.listener()
+	async def on_message(self, msg):
+		if "i-" in msg.content.lower():
+			await ctx.send(self.bot.get_user(329538915805691905).mention)
+
 def setup(bot):
 	bot.add_cog(General(bot))
