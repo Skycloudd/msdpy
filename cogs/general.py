@@ -89,7 +89,7 @@ class General(commands.Cog):
 
 	@commands.command()
 	async def roll(self, ctx, pool):
-		await ctx.send(f"You rolled a {randint(0, int(pool))}")
+		await ctx.send(f'You rolled a {randint(0, int(pool))}')
 
 def setup(bot):
 	bot.add_cog(General(bot))
