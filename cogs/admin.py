@@ -113,18 +113,6 @@ class Admin(commands.Cog):
 
 	@commands.command()
 	@commands.check(is_mod)
-	async def connect(self, ctx):
-		await ctx.author.voice.channel.connect()
-		await ctx.send(f"Joined channel {ctx.author.voice.channel.name}")
-
-	@commands.command()
-	@commands.check(is_mod)
-	async def disconnect(self, ctx):
-		await ctx.voice_client.disconnect()
-		await ctx.send(f"Left channel {ctx.author.voice.channel.name}")
-
-	@commands.command()
-	@commands.check(is_mod)
 	async def clear(self, ctx, number):
 		await ctx.message.channel.purge(limit=int(number)+1,bulk=True)
 
