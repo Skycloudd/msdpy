@@ -29,6 +29,7 @@ from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
 from pathlib import Path
+from discord.ext import tasks
 
 
 ytdlopts = {
