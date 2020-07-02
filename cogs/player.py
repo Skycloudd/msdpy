@@ -28,6 +28,7 @@ import traceback
 from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
+from pathlib import Path
 
 
 ytdlopts = {
@@ -46,7 +47,7 @@ ytdlopts = {
 
 ffmpegopts = {
 	'before_options': '-nostdin',
-	'options': '-vn'
+	'options': '-vn -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
 }
 
 ytdl = YoutubeDL(ytdlopts)
@@ -195,6 +196,7 @@ class Player(commands.Cog):
 
 	def __init__(self, bot):
 		self.bot = bot
+		self.cleanup.start()
 		self.players = {}
 
 	async def cleanup(self, guild):
@@ -429,6 +431,11 @@ class Player(commands.Cog):
 			return await ctx.send('I am not currently playing anything!', delete_after=20)
 
 		await self.cleanup(ctx.guild)
+		
+	@tasks.loop(hours=10.0)
+	async def cleanup(self):
+		for p in Path("./downloads/").glob("*"):
+			p.unlink()
 
 
 def setup(bot):
