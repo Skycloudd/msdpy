@@ -434,7 +434,7 @@ class Player(commands.Cog):
 		await self.cleanup(ctx.guild)
 		
 	@tasks.loop(hours=10.0)
-	async def cleanup(self):
+	async def _cleanup(self):
 		for p in Path("./downloads/").glob("*"):
 			p.unlink()
 
