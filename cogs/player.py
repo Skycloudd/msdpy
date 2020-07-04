@@ -197,7 +197,7 @@ class Player(commands.Cog):
 
 	def __init__(self, bot):
 		self.bot = bot
-		self.removedownloads.start()
+		#self.removedownloads.start()
 		self.players = {}
 
 	async def cleanup(self, guild):
