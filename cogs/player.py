@@ -249,7 +249,7 @@ class Player(commands.Cog):
 
 		return player
 
-	@commands.command(name='connectvc', aliases=['join'])
+	@commands.command(name='connect', aliases=['join'])
 	async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
 		"""Connect to voice.
 
@@ -440,5 +440,4 @@ class Player(commands.Cog):
 
 
 def setup(bot):
-	bot.add_cog(Player(bot))
 	bot.add_cog(Player(bot))

@@ -8,11 +8,11 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 extensions = [
+	"cogs.player",
 	"cogs.general",
 	"cogs.logs",
 	"cogs.roles",
-	"cogs.admin",
-	"cogs.player"
+	"cogs.admin"
 ]
 
 load_dotenv()
