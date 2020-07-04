@@ -109,7 +109,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 		loop = loop or asyncio.get_event_loop()
 		requester = data['requester']
 
-		to_run = partial(ytdl.extract_info, url=data['webpage_url'], download=False)
+		to_run = partial(ytdl.extract_info, url=data['webpage_url'])
 		data = await loop.run_in_executor(None, to_run)
 
 		return cls(discord.FFmpegPCMAudio(data['url'], **ffmpegopts), data=data, requester=requester)
@@ -307,7 +307,7 @@ class Player(commands.Cog):
 
 		# If download is False, source will be a dict which will be used later to regather the stream.
 		# If download is True, source will be a discord.FFmpegPCMAudio with a VolumeTransformer.
-		source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
+		source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop)
 
 		await player.queue.put(source)
 
@@ -440,4 +440,5 @@ class Player(commands.Cog):
 
 
 def setup(bot):
+	bot.add_cog(Player(bot))
 	bot.add_cog(Player(bot))
