@@ -441,4 +441,3 @@ class Player(commands.Cog):
 
 def setup(bot):
 	bot.add_cog(Player(bot))
-	bot.add_cog(Player(bot))
