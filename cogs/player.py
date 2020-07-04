@@ -249,7 +249,7 @@ class Player(commands.Cog):
 
 		return player
 
-	@commands.command(name='connect', aliases=['join'])
+	@commands.command(name='connectvc', aliases=['join'])
 	async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
 		"""Connect to voice.
 
