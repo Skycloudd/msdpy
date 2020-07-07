@@ -52,6 +52,24 @@ class Math(commands.Cog):
 		elif rad_deg != 'rad' and rad_deg != 'deg':
 			return await ctx.send('second argument must be either \'rad\' or \'deg\'')
 
+	@commands.command(description='Converts degrees to radians')
+	async def degtorad(self, ctx, x):
+		try:
+			x = float(x)
+		except ValueError:
+			return await ctx.send(f'{x} is not a number')
+
+		await ctx.send(f'```360 degrees = 2*pi radians\ndegrees: {x}\nradians: {math.radians(x)}```')
+
+	@commands.command(description='Converts radians to degrees')
+	async def radtodeg(self, ctx, x):
+		try:
+			x = float(x)
+		except ValueError:
+			return await ctx.send(f'{x} is not a number')
+
+		await ctx.send(f'```pi radians = 180 degrees\nradians: {x}\ndegrees: {math.degrees(x)}```')
+
 
 def setup(bot):
 	bot.add_cog(Math(bot))
