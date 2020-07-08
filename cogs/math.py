@@ -15,9 +15,9 @@ class Math(commands.Cog):
 			return await ctx.send(f'{x} is not a number')
 
 		if rad_deg == 'rad':
-			return await ctx.send(f'sin({x}) = {math.sin(x)} in radians')
+			return await ctx.send(f'sin({x}) = {math.sin(x)} in radian mode')
 		elif rad_deg == 'deg':
-			return await ctx.send(f'sin({x}) = {math.sin(math.radians(x))} in degrees')
+			return await ctx.send(f'sin({x}) = {math.sin(math.radians(x))} in degree mode')
 
 		elif rad_deg != 'rad' and rad_deg != 'deg':
 			return await ctx.send('second argument must be either \'rad\' or \'deg\'')
@@ -30,9 +30,9 @@ class Math(commands.Cog):
 			return await ctx.send(f'{x} is not a number')
 
 		if rad_deg == 'rad':
-			return await ctx.send(f'cos({x}) = {math.cos(x)} in radians')
+			return await ctx.send(f'cos({x}) = {math.cos(x)} in radian mode')
 		elif rad_deg == 'deg':
-			return await ctx.send(f'cos({x}) = {math.cos(math.radians(x))} in degrees')
+			return await ctx.send(f'cos({x}) = {math.cos(math.radians(x))} in degree mode')
 
 		elif rad_deg != 'rad' and rad_deg != 'deg':
 			return await ctx.send('second argument must be either \'rad\' or \'deg\'')
@@ -45,9 +45,9 @@ class Math(commands.Cog):
 			return await ctx.send(f'{x} is not a number')
 
 		if rad_deg == 'rad':
-			return await ctx.send(f'tan({x}) = {math.tan(x)} in radians')
+			return await ctx.send(f'tan({x}) = {math.tan(x)} in radian mode')
 		elif rad_deg == 'deg':
-			return await ctx.send(f'tan({x}) = {math.tan(math.radians(x))} in degrees')
+			return await ctx.send(f'tan({x}) = {math.tan(math.radians(x))} in degree mode')
 
 		elif rad_deg != 'rad' and rad_deg != 'deg':
 			return await ctx.send('second argument must be either \'rad\' or \'deg\'')
