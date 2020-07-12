@@ -101,10 +101,10 @@ class General(commands.Cog):
 		text = ''
 		for i in range(len(emotes)):
 			if len(text) + len(str(emotes[i])) > 2000:
-				ctx.send(text)
+				await ctx.send(text)
 				text = ''
 			text += str(emotes[i])
-		ctx.send(text)
+		await ctx.send(text)
 
 
 def setup(bot):
