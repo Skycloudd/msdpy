@@ -92,5 +92,12 @@ class General(commands.Cog):
 	async def roll(self, ctx, pool):
 		await ctx.send(f'You rolled a {randint(0, int(pool))}')
 
+	@commands.command()
+	async def emotes(self, ctx):
+		emotes = ''
+		for emote in self.bot.emojis:
+			emotes += f'{str(emote)} '
+		await ctx.send(emotes)
+
 def setup(bot):
 	bot.add_cog(General(bot))
