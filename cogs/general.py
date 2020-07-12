@@ -94,10 +94,18 @@ class General(commands.Cog):
 
 	@commands.command()
 	async def emotes(self, ctx):
-		emotes = ''
+		emotes = []
 		for emote in self.bot.emojis:
-			emotes += f'{str(emote)} '
-		await ctx.send(emotes)
+			emotes.append(str(emote))
+
+		text = ''
+		for i in range(len(emotes)):
+			if len(text) + len(str(emotes[i])) > 2000:
+				ctx.send(text)
+				text = ''
+			text += str(emotes[i])
+		ctx.send(text)
+
 
 def setup(bot):
 	bot.add_cog(General(bot))
