@@ -12,7 +12,8 @@ extensions = [
 	"cogs.logs",
 	"cogs.roles",
 	"cogs.admin",
-	"cogs.player"
+	"cogs.player",
+	"cogs.math",
 ]
 
 load_dotenv()
