@@ -89,8 +89,17 @@ class General(commands.Cog):
 			await ctx.send(output)
 
 	@commands.command()
+	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def roll(self, ctx, pool):
-		await ctx.send(f'You rolled a {randint(0, int(pool))}')
+		await ctx.send(
+			f'You rolled a {randint(0, int(pool))}\n`Please wait 20 seconds before using this command again`')
+
+	@roll.error
+	async def roll_error(self, ctx, error):
+		if isinstance(error, commands.CommandOnCooldown):
+			pass
+		else:
+			raise error
 
 	@commands.command()
 	async def emotes(self, ctx):
