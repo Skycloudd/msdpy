@@ -2,6 +2,7 @@ import os
 import time
 import logging
 import json
+import aiohttp
 
 from discord.ext import commands
 
@@ -53,6 +54,8 @@ class MsdBot(commands.Bot):
 			if not self.config['blacklist']:
 				self.config['blacklist'] = []
 			config = self.config
+
+		self.session = aiohttp.ClientSession()
 
 	async def on_ready(self):
 		print(f'logged in as {self.user}')

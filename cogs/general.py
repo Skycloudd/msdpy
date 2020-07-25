@@ -115,6 +115,26 @@ class General(commands.Cog):
 			text += str(emotes[i])
 		await ctx.send(text)
 
+	@commands.command(aliases=['nasa', 'apod'])
+	async def nasapic(self, ctx):
+		apikey = self.bot.config['nasa_apikey']
+		url = f'https://api.nasa.gov/planetary/apod?api_key={apikey}'
+
+		async with self.bot.session.get(url) as r:
+			response = json.loads(await r.text())
+
+			embed = discord.Embed(
+				title=response["title"],
+				colour=discord.Colour(discord.colour.Colour.orange().value),
+				url=response["hdurl"],
+				description=response["explanation"]
+			)
+
+			embed.set_image(url=response["hdurl"])
+			embed.set_footer(text=f'copyright: {response["copyright"]}')
+
+			await ctx.send(embed=embed)
+
 
 def setup(bot):
 	bot.add_cog(General(bot))
