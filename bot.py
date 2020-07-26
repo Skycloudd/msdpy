@@ -38,7 +38,7 @@ def get_prefix(bot, message):
 class MsdBot(commands.Bot):
 
 	def __init__(self):
-		super().__init__(command_prefix=get_prefix, case_insensitive=True)
+		super().__init__(command_prefix=get_prefix, case_insensitive=True, allowed_mentions=discord.AllowedMentions(everyone=False, users=True, roles=True))
 		self.logger = logging.getLogger('discord')
 
 		self.start_time = start
