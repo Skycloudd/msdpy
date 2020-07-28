@@ -4,6 +4,7 @@ import logging
 import json
 import aiohttp
 
+import discord
 from discord.ext import commands
 
 from dotenv import load_dotenv
