@@ -60,8 +60,7 @@ class Admin(commands.Cog):
 			json.dump(self.bot.custom_commands, f, indent=4)
 
 		await ctx.send(f"Removed activator {command}")
-			
-	
+
 	@commands.check(is_mod)
 	@commands.command(name='reload', hidden=True, usage='<extension>')
 	async def _reload(self, ctx, ext):
@@ -78,7 +77,7 @@ class Admin(commands.Cog):
 		except commands.ExtensionFailed:
 			await ctx.send(f'Some unknown error happened while trying to reload extension {ext} (check logs)')
 			self.bot.logger.exception(f'Failed to reload extension {ext}:')
-			
+
 	@commands.check(is_mod)
 	@commands.command(name='load', hidden=True, usage='<extension>')
 	async def _load(self, ctx, ext):
@@ -114,33 +113,33 @@ class Admin(commands.Cog):
 	@commands.command()
 	@commands.check(is_mod)
 	async def clear(self, ctx, number):
-		await ctx.message.channel.purge(limit=int(number)+1,bulk=True)
+		await ctx.message.channel.purge(limit=int(number) + 1, bulk=True)
 
 	@commands.check(is_mod)
 	@commands.command()
-	async def mute(self, ctx, members: commands.Greedy[discord.Member]=False,
-					   mute_minutes: int = 0,
-					   *, reason: str = "absolutely no reason"):
+	async def mute(self, ctx, members: commands.Greedy[discord.Member] = False,
+				   mute_minutes: int = 0,
+				   *, reason: str = "absolutely no reason"):
 		if not members:
 			await ctx.send("You need to name someone to mute")
 			return
-		elif type(members)==str:
+		elif type(members) == str:
 			members = self.bot.get_user(int(members))
 
-		#muted_role = discord.utils.find(ctx.guild.roles, name="Muted")
+		# muted_role = discord.utils.find(ctx.guild.roles, name="Muted")
 		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["mute_role"]))
 		for member in members:
-			if self.bot.user == member: # what good is a muted bot?
-				embed = discord.Embed(title = "You can't mute me, I'm an almighty bot")
-				await ctx.send(embed = embed)
+			if self.bot.user == member:  # what good is a muted bot?
+				embed = discord.Embed(title="You can't mute me, I'm an almighty bot")
+				await ctx.send(embed=embed)
 				continue
-			await member.add_roles(muted_role, reason = reason)
+			await member.add_roles(muted_role, reason=reason)
 			await ctx.send(f"{member} has been muted by {ctx.author} for *{reason}*")
 
 		if mute_minutes > 0:
 			await asyncio.sleep(mute_minutes * 60)
 			for member in members:
-				await member.remove_roles(muted_role, reason = "time's up ")
+				await member.remove_roles(muted_role, reason="time's up ")
 
 	@commands.check(is_mod)
 	@commands.command()
@@ -148,7 +147,7 @@ class Admin(commands.Cog):
 		if not members:
 			await ctx.send("You need to name someone to unmute")
 			return
-		elif type(members)==str:
+		elif type(members) == str:
 			members = self.bot.get_user(int(members))
 
 		muted_role = ctx.guild.get_role(int(self.bot.config[str(ctx.guild.id)]["mute_role"]))
@@ -158,11 +157,11 @@ class Admin(commands.Cog):
 
 	@commands.command(aliases=['ban'], hidden=True)
 	@commands.check(is_mod)
-	async def blacklist(self, ctx, members: commands.Greedy[discord.Member]=None):
+	async def blacklist(self, ctx, members: commands.Greedy[discord.Member] = None):
 		if not members:
 			await ctx.send("You need to name someone to blacklist")
 			return
-		elif type(members)=="str":
+		elif type(members) == "str":
 			members = self.bot.get_user(int(user))
 
 		with open('config.json', 'w') as f:
@@ -178,7 +177,7 @@ class Admin(commands.Cog):
 
 	@commands.check(is_mod)
 	@commands.command()
-	async def activity(self, ctx,*, activity=None):
+	async def activity(self, ctx, *, activity=None):
 		if activity:
 			game = discord.Game(activity)
 		else:
@@ -206,6 +205,24 @@ class Admin(commands.Cog):
 			await ctx.message.delete()
 			file = discord.File("discord.log")
 			await ctx.send(file=file)
+
+	@commands.command()
+	@commands.check(is_mod)
+	async def addemote(self, ctx, name=None, *, reason='No reason provided'):
+		emote_pic = None
+		for attachement in ctx.message.attachments:
+			emote_pic = await attachement.read()
+		if not emote_pic:
+			ctx.send('You need to add an image as attachment to this message')
+			return
+		if not name:
+			ctx.send('You need a name for this emote')
+			return
+		if len(name) < 2:
+			ctx.send('The name of this emote needs a length of 2 or more characters')
+			return
+		await ctx.guild.create_custom_emoji(name=name, image=emote_pic, reason=reason)
+		await ctx.send(f'Added emote {name}')
 
 
 def setup(bot):
