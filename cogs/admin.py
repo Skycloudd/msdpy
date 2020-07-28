@@ -225,8 +225,8 @@ class Admin(commands.Cog):
 		if len(name) < 2:
 			ctx.send('The name of this emote needs a length of 2 or more characters')
 			return
-		await ctx.guild.create_custom_emoji(name=name, image=emote_pic, reason=reason)
-		await ctx.send(f'Added emote {name}')
+		added_emote = await ctx.guild.create_custom_emoji(name=name, image=emote_pic, reason=reason)
+		await ctx.send(f'Added the emote {str(added_emote)} `:{name}:` to this server!')
 
 
 def setup(bot):
