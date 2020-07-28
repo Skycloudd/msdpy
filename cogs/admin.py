@@ -22,8 +22,12 @@ class Admin(commands.Cog):
 	@commands.command()
 	@commands.check(is_mod)
 	async def pull(self, ctx):
+		"""Update the bot from github"""
 		g = git.cmd.Git(os.getcwd())
-		await ctx.send(f"Probably pulled.\n```bash\n{g.pull()}```")
+		try:
+			await ctx.send(f"Probably pulled.\n```bash\n{g.pull()}```")
+		except git.exc.GitCommandError as e:
+			await ctx.send(f"An error has occured when pulling```bash\n{e}```")
 
 	@commands.command(aliases=['addcommand', 'newcommand'])
 	@commands.check(is_mod)
