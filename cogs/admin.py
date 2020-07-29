@@ -228,6 +228,15 @@ class Admin(commands.Cog):
 		added_emote = await ctx.guild.create_custom_emoji(name=name, image=emote_pic, reason=reason)
 		await ctx.send(f'Added the emote {str(added_emote)} `:{name}:` to this server!')
 
+	@commands.command(aliases=['slow'])
+	@commands.check(is_mod)
+	async def slowmode(self, ctx, time):
+		if ctx.channel.type == discord.ChannelType.text:
+			try:
+				ctx.channel.slowmode_delay = int(time)
+			except ValueError:
+				ctx.send(f'{ctx.author.mention}, the delay needs to be a number!')
+
 
 def setup(bot):
 	bot.add_cog(Admin(bot))
