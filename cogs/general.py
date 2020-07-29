@@ -89,8 +89,52 @@ class General(commands.Cog):
 			await ctx.send(output)
 
 	@commands.command()
+	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def roll(self, ctx, pool):
-		await ctx.send(f'You rolled a {randint(0, int(pool))}')
+		await ctx.send(
+			f'You rolled a {randint(0, int(pool))}\n`Please wait 20 seconds before using this command again`')
+
+	@roll.error
+	async def roll_error(self, ctx, error):
+		if isinstance(error, commands.CommandOnCooldown):
+			pass
+		else:
+			raise error
+
+	@commands.command()
+	async def emotes(self, ctx):
+		emotes = []
+		for emote in self.bot.emojis:
+			emotes.append(str(emote))
+
+		text = ''
+		for i in range(len(emotes)):
+			if len(text) + len(str(emotes[i])) > 2000:
+				await ctx.send(text)
+				text = ''
+			text += str(emotes[i])
+		await ctx.send(text)
+
+	@commands.command(aliases=['nasa', 'apod'])
+	async def nasapic(self, ctx):
+		apikey = self.bot.config['nasa_apikey']
+		url = f'https://api.nasa.gov/planetary/apod?api_key={apikey}'
+
+		async with self.bot.session.get(url) as r:
+			response = json.loads(await r.text())
+
+			embed = discord.Embed(
+				title=response["title"],
+				colour=discord.Colour(discord.colour.Colour.orange().value),
+				url=response["hdurl"],
+				description=response["explanation"]
+			)
+
+			embed.set_image(url=response["hdurl"])
+			embed.set_footer(text=f'copyright: {response["copyright"]}')
+
+			await ctx.send(embed=embed)
+
 
 def setup(bot):
 	bot.add_cog(General(bot))

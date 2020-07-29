@@ -2,7 +2,9 @@ import os
 import time
 import logging
 import json
+import aiohttp
 
+import discord
 from discord.ext import commands
 
 from dotenv import load_dotenv
@@ -12,7 +14,13 @@ extensions = [
 	"cogs.general",
 	"cogs.logs",
 	"cogs.roles",
+<<<<<<< HEAD
 	"cogs.admin"
+=======
+	"cogs.admin",
+	"cogs.player",
+	"cogs.math",
+>>>>>>> 13117939227d867c1038ff35b50ee41a334449a1
 ]
 
 load_dotenv()
@@ -36,7 +44,7 @@ def get_prefix(bot, message):
 class MsdBot(commands.Bot):
 
 	def __init__(self):
-		super().__init__(command_prefix=get_prefix, case_insensitive=True)
+		super().__init__(command_prefix=get_prefix, case_insensitive=True, allowed_mentions=discord.AllowedMentions(everyone=False, users=True, roles=True))
 		self.logger = logging.getLogger('discord')
 
 		self.start_time = start
@@ -52,6 +60,8 @@ class MsdBot(commands.Bot):
 			if not self.config['blacklist']:
 				self.config['blacklist'] = []
 			config = self.config
+
+		self.session = aiohttp.ClientSession()
 
 	async def on_ready(self):
 		print(f'logged in as {self.user}')
