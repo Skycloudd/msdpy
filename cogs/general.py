@@ -97,15 +97,7 @@ class General(commands.Cog):
 	@roll.error
 	async def roll_error(self,ctx,error):
 		if isinstance(error, commands.CommandOnCooldown):
-			await ctx.send(f"{ctx.author.mention}, you have to wait {round(error.retry_after, 3)} seconds before using this again.")
-
-
-	@roll.error
-	async def roll_error(self, ctx, error):
-		if isinstance(error, commands.CommandOnCooldown):
-			pass
-		else:
-			raise error
+			await ctx.send(f"{ctx.author.mention}, you have to wait {round(error.retry_after, 3)} seconds before using this again")
 
 	@commands.command()
 	async def emotes(self, ctx):
@@ -143,8 +135,8 @@ class General(commands.Cog):
 
 
 	@commands.Cog.listener()
-	async def on_message(self, msg):
-		if "i-" in msg.content.lower():
+	async def on_message(self, ctx):
+		if "i-" in ctx.content.lower():
 			await ctx.send(self.bot.get_user(329538915805691905).mention)
 
 def setup(bot):
