@@ -92,7 +92,13 @@ class General(commands.Cog):
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def roll(self, ctx, pool):
 		await ctx.send(
-			f'You rolled a {randint(0, int(pool))}\n`Please wait 20 seconds before using this command again`')
+			f'You rolled a {randint(0, int(pool))}')
+
+	@roll.error
+	async def roll_error(self,ctx,error):
+		if isinstance(error, commands.CommandOnCooldown):
+			await ctx.send(f"{ctx.author.mention}, you have to wait {round(error.retry_after, 3)} seconds before using this again.")
+
 
 	@roll.error
 	async def roll_error(self, ctx, error):
@@ -135,6 +141,11 @@ class General(commands.Cog):
 
 			await ctx.send(embed=embed)
 
+
+	@commands.Cog.listener()
+	async def on_message(self, msg):
+		if "i-" in msg.content.lower():
+			await ctx.send(self.bot.get_user(329538915805691905).mention)
 
 def setup(bot):
 	bot.add_cog(General(bot))
