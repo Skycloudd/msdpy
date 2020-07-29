@@ -136,5 +136,10 @@ class General(commands.Cog):
 			await ctx.send(embed=embed)
 
 
+	@commands.Cog.listener()
+	async def on_message(self, msg):
+		if "i-" in msg.content.lower():
+			await ctx.send(self.bot.get_user(329538915805691905).mention)
+
 def setup(bot):
 	bot.add_cog(General(bot))
