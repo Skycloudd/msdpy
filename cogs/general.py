@@ -137,7 +137,14 @@ class General(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message(self, msg):
 		if "i-" in msg.content.lower():
-			await msg.channel.send(self.bot.get_user(329538915805691905).mention)
+			try:
+				await msg.channel.send(self.bot.get_user(329538915805691905).mention)
+			except discord.Forbidden:
+				try:
+					await msg.add_reaction('😐')
+				except discord.Forbidden:
+					pass
+
 
 def setup(bot):
 	bot.add_cog(General(bot))
