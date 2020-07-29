@@ -230,10 +230,11 @@ class Admin(commands.Cog):
 
 	@commands.command(aliases=['slow'])
 	@commands.check(is_mod)
-	async def slowmode(self, ctx, time):
+	async def slowmode(self, ctx, time_seconds):
 		if ctx.channel.type == discord.ChannelType.text:
 			try:
-				ctx.channel.slowmode_delay = int(time)
+				await ctx.channel.edit(slowmode_delay=int(time_seconds))
+				await ctx.message.add_reaction('👍')
 			except ValueError:
 				ctx.send(f'{ctx.author.mention}, the delay needs to be a number!')
 
