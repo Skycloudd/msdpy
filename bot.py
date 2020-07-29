@@ -14,13 +14,9 @@ extensions = [
 	"cogs.general",
 	"cogs.logs",
 	"cogs.roles",
-<<<<<<< HEAD
-	"cogs.admin"
-=======
 	"cogs.admin",
 	"cogs.player",
-	"cogs.math",
->>>>>>> 13117939227d867c1038ff35b50ee41a334449a1
+	"cogs.math"
 ]
 
 load_dotenv()
