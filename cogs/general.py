@@ -135,9 +135,9 @@ class General(commands.Cog):
 
 
 	@commands.Cog.listener()
-	async def on_message(self, ctx):
-		if "i-" in ctx.content.lower():
-			await ctx.send(self.bot.get_user(329538915805691905).mention)
+	async def on_message(self, msg):
+		if "i-" in msg.content.lower():
+			await msg.channel.send(self.bot.get_user(329538915805691905).mention)
 
 def setup(bot):
 	bot.add_cog(General(bot))
