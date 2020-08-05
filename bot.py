@@ -15,7 +15,6 @@ extensions = [
 	"cogs.logs",
 	"cogs.roles",
 	"cogs.admin",
-	"cogs.player",
 	"cogs.math"
 ]
 
