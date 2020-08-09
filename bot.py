@@ -15,7 +15,8 @@ extensions = [
 	"cogs.logs",
 	"cogs.roles",
 	"cogs.admin",
-	"cogs.math"
+	"cogs.math",
+	"cogs.eval"
 ]
 
 load_dotenv()
