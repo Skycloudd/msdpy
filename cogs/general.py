@@ -133,15 +133,29 @@ class General(commands.Cog):
 
 			await ctx.send(embed=embed)
 
-
 	@commands.Cog.listener()
 	async def on_message(self, msg):
+		if msg.author.bot:
+			return
+		if not msg.guild:
+			return
+		if msg.author.id in self.bot.config['blacklist']:
+			return
 		if "i-" in msg.content.lower():
 			try:
 				await msg.channel.send(self.bot.get_user(329538915805691905).mention)
 			except discord.Forbidden:
 				try:
 					await msg.add_reaction('😐')
+				except discord.Forbidden:
+					pass
+		if "pog" in msg.content.lower():
+			pog_emote = await msg.guild.fetch_emoji(int(self.bot.config[str(msg.guild.id)]["pog_emote_id"]))
+			try:
+				await msg.channel.send(pog_emote)
+			except discord.Forbidden:
+				try:
+					await msg.add_reaction(pog_emote)
 				except discord.Forbidden:
 					pass
 
