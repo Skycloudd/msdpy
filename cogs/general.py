@@ -95,7 +95,7 @@ class General(commands.Cog):
 			f'You rolled a {randint(0, int(pool))}')
 
 	@roll.error
-	async def roll_error(self,ctx,error):
+	async def roll_error(self, ctx, error):
 		if isinstance(error, commands.CommandOnCooldown):
 			await ctx.send(f"{ctx.author.mention}, you have to wait {round(error.retry_after, 3)} seconds before using this again")
 
@@ -132,6 +132,22 @@ class General(commands.Cog):
 			embed.set_footer(text=f'copyright: {response["copyright"]}')
 
 			await ctx.send(embed=embed)
+
+	@commands.cooldown(1, 20, commands.BucketType.user)
+	@commands.command()
+	async def findseed(self, ctx):
+		portal_frames = 12
+		total_eyes = 0
+		for i in range(portal_frames):
+			if randint(0, 100) < 10:
+				total_eyes += 1
+		await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
+
+	@findseed.error
+	async def findseed_error(self, ctx, error):
+		if isinstance(error, commands.CommandOnCooldown):
+			await ctx.send(
+				f'{ctx.author.mention}, you have to wait {round(error.retry_after, 3)} seconds before using this again')
 
 	@commands.Cog.listener()
 	async def on_message(self, msg):
