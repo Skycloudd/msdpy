@@ -9,6 +9,8 @@ class General(commands.Cog):
 
 	def __init__(self, bot):
 		self.bot = bot
+		# sky server, sky
+		self.findseed_whitelist = [672045035797348352, 329538915805691905]
 
 	@commands.command(description='Shows the bot’s ping to Discord')
 	async def ping(self, ctx):
@@ -142,6 +144,26 @@ class General(commands.Cog):
 			if randint(0, 100) < 10:
 				total_eyes += 1
 		await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
+
+	# https://gist.github.com/CapClumsy/6128d89a1e842b4e802b3a077d7f98a5
+	@findseed.after_invoke
+	async def reset_cooldown(self, ctx):
+		for e in self.findseed_whitelist:
+			# to whitelist a person:
+			if e == ctx.author.id:
+				self.findseed.reset_cooldown(ctx)
+
+			# to whitelist a channel:
+			if e == ctx.message.channel.id:
+				self.findseed.reset_cooldown(ctx)
+
+			# to whitelist a guild/server:
+			if e == ctx.message.guild.id:
+				self.findseed.reset_cooldown(ctx)
+
+			# to whitelist a role:
+			if e in [role.id for role in ctx.author.roles]:
+				self.findseed.reset_cooldown(ctx)
 
 	@findseed.error
 	async def findseed_error(self, ctx, error):
