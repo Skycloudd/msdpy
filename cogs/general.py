@@ -105,7 +105,8 @@ class General(commands.Cog):
 	async def emotes(self, ctx):
 		emotes = []
 		for emote in self.bot.emojis:
-			emotes.append(str(emote))
+			if emote.available:
+				emotes.append(str(emote))
 
 		text = ''
 		for i in range(len(emotes)):
