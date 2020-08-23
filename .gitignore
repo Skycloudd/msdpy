@@ -240,3 +240,4 @@ dmypy.json
 # MSD Specific 
 downloads/*
 config.json
+/.idea/inspectionProfiles/Project_Default.xml
