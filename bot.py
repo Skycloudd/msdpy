@@ -59,6 +59,8 @@ class MsdBot(commands.Bot):
 
 		self.session = aiohttp.ClientSession()
 
+		self.current_count = 0
+
 	async def on_ready(self):
 		print(f'logged in as {self.user}')
 
