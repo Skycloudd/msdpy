@@ -236,8 +236,8 @@ dmypy.json
 /.idea/misc.xml
 /.idea/codeStyles/codeStyleConfig.xml
 /.idea/.gitignore
+/.idea/inspectionProfiles/Project_Default.xml
 
 # MSD Specific 
 downloads/*
 config.json
-/.idea/inspectionProfiles/Project_Default.xml
