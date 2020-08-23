@@ -81,6 +81,9 @@ class MsdBot(commands.Bot):
 				return
 		except:
 			return
+		if msg.content == str(self.current_count):
+			await msg.add_reaction('✅')
+			self.current_count += 1
 
 	def run(self):
 		super().run(self.config['token'])
