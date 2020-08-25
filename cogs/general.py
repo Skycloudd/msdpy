@@ -144,7 +144,10 @@ class General(commands.Cog):
 		for i in range(portal_frames):
 			if randint(0, 100) < 10:
 				total_eyes += 1
-		await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
+		try:
+			await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
+		except discord.Forbidden:
+			await ctx.message.add_reaction('👁️')
 
 	# https://gist.github.com/CapClumsy/6128d89a1e842b4e802b3a077d7f98a5
 	@findseed.after_invoke
