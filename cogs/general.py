@@ -142,7 +142,7 @@ class General(commands.Cog):
 		portal_frames = 12
 		total_eyes = 0
 		for i in range(portal_frames):
-			if randint(0, 100) < 10:
+			if randint(0, 99) < 10:
 				total_eyes += 1
 		try:
 			await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
