@@ -144,6 +144,11 @@ class General(commands.Cog):
 		for i in range(portal_frames):
 			if randint(0, 99) < 10:
 				total_eyes += 1
+
+		# rigged findseed
+		if ctx.author.id == 738279874749530172:  # Grape
+			total_eyes = 12
+
 		try:
 			await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
 		except discord.Forbidden:
