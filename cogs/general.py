@@ -148,6 +148,12 @@ class General(commands.Cog):
 		# rigged findseed
 		if ctx.author.id == 738279874749530172:  # Grape
 			total_eyes = 12
+		if ctx.author.id == 329538915805691905:  # Skye
+			total_eyes += 1
+			if total_eyes > portal_frames:
+				total_eyes = portal_frames
+		if ctx.author.id == 554768592441442315:  # Stephen
+			total_eyes = 69
 
 		try:
 			await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
