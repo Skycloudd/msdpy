@@ -20,6 +20,36 @@ class General(commands.Cog):
 	async def gamelist(self, ctx):
 		await ctx.send('Drgrumble\'s mobile game list: https://tinyurl.com/y8rzwpst')
 
+	@commands.command(aliases=['max', 'botinfo', 'bot'])
+	async def info(self, ctx):
+		version = self.bot.config['version']
+
+		embed = discord.Embed(
+			title="Information about this bot",
+			colour=discord.Colour(0xc500ff),
+			description="This bot was made by Sky. The full source code can be found at https://github.com/Skycloudd/msdpy. The bot is currently hosted by AnInternetTroll."
+		)
+
+		embed.set_thumbnail(url=self.bot.user.avatar_url_as(format="png"))
+
+		embed.add_field(
+			name="Info",
+			value=f"ID: {self.bot.user.id}\nName: {self.bot.user.name}\nVersion: {version}",
+			inline=True
+		)
+		embed.add_field(
+			name="Ping to the Discord API",
+			value=f'{round(self.bot.latency * 1000)}ms',
+			inline=True
+		)
+		embed.add_field(
+			name="Library",
+			value=f"Discord.py v{discord.__version__}",
+			inline=True
+		)
+
+		await ctx.send(embed=embed)
+
 	@commands.command(description='Shows how long the bot has been online for')
 	async def uptime(self, ctx):
 		seconds = time.time() - self.bot.start_time
