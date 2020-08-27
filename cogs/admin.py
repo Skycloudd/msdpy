@@ -47,24 +47,6 @@ class Admin(commands.Cog):
 
 		await ctx.send(f"Removed command {command}")
 
-	@commands.command(aliases=['addactivator', 'newactivator'])
-	@commands.check(is_mod)
-	async def setactivator(self, ctx, command, *, message):
-		self.bot.custom_commands[command] = message
-		with open('custom_commands.json', 'w') as f:
-			json.dump(self.bot.custom_commands, f, indent=4)
-
-		await ctx.send(f"Set message for activator {command}")
-
-	@commands.command(aliases=['deleteactivator'])
-	@commands.check(is_mod)
-	async def removeactivator(self, ctx, command):
-		del self.bot.custom_commands[command]
-		with open('custom_commands.json', 'w') as f:
-			json.dump(self.bot.custom_commands, f, indent=4)
-
-		await ctx.send(f"Removed activator {command}")
-
 	@commands.check(is_mod)
 	@commands.command(name='reload', hidden=True, usage='<extension>')
 	async def _reload(self, ctx, ext):
