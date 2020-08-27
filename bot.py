@@ -13,7 +13,7 @@ extensions = [
 	"cogs.player",
 	"cogs.general",
 	"cogs.logs",
-	"cogs.roles",
+	#"cogs.roles",
 	"cogs.admin",
 	"cogs.math",
 	"cogs.eval"

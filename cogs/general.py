@@ -29,7 +29,7 @@ class General(commands.Cog):
 		w, d = divmod(d, 7)
 		await ctx.send(f"I've been online for `{int(w)}w : {int(d)}d : {int(h)}h : {int(m)}m : {int(s)}s`")
 
-	@commands.command()
+	@commands.command(aliases=['profile'])
 	async def userinfo(self, ctx, user: discord.Member=None):
 		if not user:
 			user = ctx.message.author
