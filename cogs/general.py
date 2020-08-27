@@ -204,13 +204,7 @@ class General(commands.Cog):
 					pass
 		if "pog" in msg.content.lower():
 			pog_emote = await msg.guild.fetch_emoji(int(self.bot.config[str(msg.guild.id)]["pog_emote_id"]))
-			try:
-				await msg.channel.send(pog_emote)
-			except discord.Forbidden:
-				try:
-					await msg.add_reaction(pog_emote)
-				except discord.Forbidden:
-					pass
+			await msg.add_reaction(pog_emote)
 
 
 def setup(bot):
