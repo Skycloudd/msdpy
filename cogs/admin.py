@@ -181,6 +181,13 @@ class Admin(commands.Cog):
 
 	@commands.check(is_mod)
 	@commands.command(hidden=True)
+	async def delvar(self, ctx, key):
+		with open('config.json', 'w') as f:
+			del self.bot.config[str(ctx.message.guild.id)][key]
+			json.dump(self.bot.config, f, indent=4)
+
+	@commands.check(is_mod)
+	@commands.command(hidden=True)
 	async def printvar(self, ctx, key):
 		await ctx.send(self.bot.config[str(ctx.message.guild.id)][key])
 
