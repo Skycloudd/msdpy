@@ -211,8 +211,18 @@ class General(commands.Cog):
 		if ctx.author.id == 554768592441442315:  # Stephen
 			total_eyes = 69
 
+		embed = discord.Embed(
+			colour=discord.Colour(0xc500ff)
+		)
+
+		embed.add_field(
+			name="Findseed",
+			value=f"{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye",
+			inline=False
+		)
+
 		try:
-			await ctx.send(f'{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye')
+			await ctx.send(embed=embed)
 		except discord.Forbidden:
 			await ctx.message.add_reaction('👁️')
 
