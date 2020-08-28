@@ -63,7 +63,6 @@ class General(commands.Cog):
 		h, m = divmod(m, 60)
 		d, h = divmod(h, 24)
 		w, d = divmod(d, 7)
-		await ctx.send(f"I've been online for `{int(w)}w : {int(d)}d : {int(h)}h : {int(m)}m : {int(s)}s`")
 
 		embed = discord.Embed(
 			colour=discord.Colour(0xc500ff)
