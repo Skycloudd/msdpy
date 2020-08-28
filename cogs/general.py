@@ -26,10 +26,6 @@ class General(commands.Cog):
 
 		await ctx.send(embed=embed)
 
-	@commands.command(description='Shows Drgrumble\'s game list', aliases=['games'])
-	async def gamelist(self, ctx):
-		await ctx.send('Drgrumble\'s mobile game list: https://tinyurl.com/y8rzwpst')
-
 	@commands.command(aliases=['max', 'botinfo', 'bot'])
 	async def info(self, ctx):
 		version = self.bot.config['version']
