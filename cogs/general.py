@@ -14,7 +14,17 @@ class General(commands.Cog):
 
 	@commands.command(description='Shows the bot’s ping to Discord')
 	async def ping(self, ctx):
-		await ctx.send(f'Pong! {round(self.bot.latency * 1000)}ms')
+		embed = discord.Embed(
+			colour=discord.Colour(0xc500ff)
+		)
+
+		embed.add_field(
+			name="Ping",
+			value=f"{round(self.bot.latency * 1000)}ms",
+			inline=False
+		)
+
+		await ctx.send(embed=embed)
 
 	@commands.command(description='Shows Drgrumble\'s game list', aliases=['games'])
 	async def gamelist(self, ctx):
