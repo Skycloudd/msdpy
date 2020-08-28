@@ -140,8 +140,17 @@ class General(commands.Cog):
 	@commands.command()
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def roll(self, ctx, pool):
-		await ctx.send(
-			f'You rolled a {randint(0, int(pool))}')
+		embed = discord.Embed(
+			colour=discord.Colour(0xc500ff)
+		)
+
+		embed.add_field(
+			name="You rolled",
+			value=f"{randint(0, int(pool))}",
+			inline=False
+		)
+
+		await ctx.send(embed=embed)
 
 	@roll.error
 	async def roll_error(self, ctx, error):
