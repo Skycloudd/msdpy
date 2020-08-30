@@ -2,7 +2,7 @@ import time
 import discord
 from discord.ext import commands
 import json
-from random import randint
+from random import randint, choice
 
 
 class General(commands.Cog):
@@ -251,6 +251,12 @@ class General(commands.Cog):
 		if isinstance(error, commands.CommandOnCooldown):
 			await ctx.send(
 				f'{ctx.author.mention}, you have to wait {round(error.retry_after, 3)} seconds before using this again')
+
+	#this command is dumb and i shouldnt have added it
+	@commands.is_owner()
+	@commands.command(hidden=True)
+	async def someone(self, ctx):
+		await ctx.send(choice(ctx.guild.members).mention)
 
 	@commands.Cog.listener()
 	async def on_message(self, msg):
