@@ -33,7 +33,7 @@ class General(commands.Cog):
 		embed = discord.Embed(
 			title="Information about this bot",
 			colour=discord.Colour(0xc500ff),
-			description="This bot was made by Sky. The full source code can be found at https://github.com/Skycloudd/msdpy. The bot is currently hosted by AnInternetTroll."
+			description="This bot was made by Skye. The full source code can be found at https://github.com/Skycloudd/msdpy. The bot is currently hosted by AnInternetTroll."
 		)
 
 		embed.set_thumbnail(url=self.bot.user.avatar_url_as(format="png"))
