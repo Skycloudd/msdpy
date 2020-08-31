@@ -21,7 +21,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="Ping",
 			value=f"{round(self.bot.latency * 1000)}ms",
-			inline=False
+			inline=True
 		)
 
 		await ctx.send(embed=embed)
@@ -71,7 +71,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="Uptime",
 			value=f"{int(w)}w : {int(d)}d : {int(h)}h : {int(m)}m : {int(s)}s",
-			inline=False
+			inline=True
 		)
 
 		await ctx.send(embed=embed)
@@ -147,7 +147,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="You rolled",
 			value=f"{randint(0, int(pool))}",
-			inline=False
+			inline=True
 		)
 
 		await ctx.send(embed=embed)
@@ -218,7 +218,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="Findseed",
 			value=f"{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye",
-			inline=False
+			inline=True
 		)
 
 		try:
