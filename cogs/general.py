@@ -195,19 +195,15 @@ class General(commands.Cog):
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	@commands.command()
 	async def findseed(self, ctx):
-		portal_frames = 12
-		total_eyes = 0
-		for i in range(portal_frames):
-			if randint(0, 99) < 10:
-				total_eyes += 1
+		total_eyes = sum([1 for i in range(12) if randint(1,10) == 1])
 
 		# rigged findseed
 		if ctx.author.id == 738279874749530172:  # Grape
 			total_eyes = 12
 		if ctx.author.id == 329538915805691905:  # Skye
 			total_eyes += 1
-			if total_eyes > portal_frames:
-				total_eyes = portal_frames
+			if total_eyes > 12:
+				total_eyes = 12
 		if ctx.author.id == 554768592441442315:  # Stephen
 			total_eyes = 69
 
