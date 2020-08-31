@@ -260,11 +260,7 @@ class General(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_message(self, msg):
-		if msg.author.bot:
-			return
-		if not msg.guild:
-			return
-		if msg.author.id in self.bot.config['blacklist']:
+		if msg.author.bot or not msg.guild or msg.author.id in self.bot.config['blacklist']:
 			return
 		if "i-" in msg.content.lower():
 			try:
