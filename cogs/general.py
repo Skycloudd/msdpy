@@ -201,7 +201,7 @@ class General(commands.Cog):
 		if ctx.author.id == 738279874749530172:  # Grape
 			total_eyes = 12
 		if ctx.author.id == 329538915805691905:  # Skye
-			total_eyes += 1
+			total_eyes += 3
 			if total_eyes > 12:
 				total_eyes = 12
 		if ctx.author.id == 554768592441442315:  # Stephen
