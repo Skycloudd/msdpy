@@ -1,5 +1,7 @@
 .idea/
+__pycache__/
 
 # MSD Specific 
 downloads/*
 config.json
+discord.log
