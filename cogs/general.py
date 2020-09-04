@@ -21,7 +21,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="Ping",
 			value=f"{round(self.bot.latency * 1000)}ms",
-			inline=False
+			inline=True
 		)
 
 		await ctx.send(embed=embed)
@@ -71,7 +71,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="Uptime",
 			value=f"{int(w)}w : {int(d)}d : {int(h)}h : {int(m)}m : {int(s)}s",
-			inline=False
+			inline=True
 		)
 
 		await ctx.send(embed=embed)
@@ -147,7 +147,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="You rolled",
 			value=f"{randint(0, int(pool))}",
-			inline=False
+			inline=True
 		)
 
 		await ctx.send(embed=embed)
@@ -195,19 +195,15 @@ class General(commands.Cog):
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	@commands.command()
 	async def findseed(self, ctx):
-		portal_frames = 12
-		total_eyes = 0
-		for i in range(portal_frames):
-			if randint(0, 99) < 10:
-				total_eyes += 1
+		total_eyes = sum([1 for i in range(12) if randint(1,10) == 1])
 
 		# rigged findseed
 		if ctx.author.id == 738279874749530172:  # Grape
 			total_eyes = 12
 		if ctx.author.id == 329538915805691905:  # Skye
-			total_eyes += 1
-			if total_eyes > portal_frames:
-				total_eyes = portal_frames
+			total_eyes += 3
+			if total_eyes > 12:
+				total_eyes = 12
 		if ctx.author.id == 554768592441442315:  # Stephen
 			total_eyes = 69
 
@@ -218,7 +214,7 @@ class General(commands.Cog):
 		embed.add_field(
 			name="Findseed",
 			value=f"{str(ctx.message.author.mention)} -> your seed is a {total_eyes} eye",
-			inline=False
+			inline=True
 		)
 
 		try:
@@ -260,11 +256,7 @@ class General(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_message(self, msg):
-		if msg.author.bot:
-			return
-		if not msg.guild:
-			return
-		if msg.author.id in self.bot.config['blacklist']:
+		if msg.author.bot or not msg.guild or msg.author.id in self.bot.config['blacklist']:
 			return
 		if "i-" in msg.content.lower():
 			try:
