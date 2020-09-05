@@ -4,6 +4,9 @@ from discord.ext import commands
 import json
 from random import randint, choice
 import time
+import os
+import sys
+import inspect
 
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir = os.path.dirname(current_dir)
