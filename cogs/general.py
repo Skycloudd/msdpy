@@ -149,9 +149,6 @@ class General(commands.Cog):
 	@commands.command()
 	async def prefix(self, ctx):
 		prefixes = bot.get_prefix(self.bot, ctx.message)
-		prefixes.pop(1)
-		prefixes.pop(1)
-		prefixes.pop(1)
 		output = ", ".join(prefixes)
 
 		await ctx.send(f"My prefixes are {output}")
