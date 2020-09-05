@@ -1,8 +1,14 @@
-import time
 import discord
 from discord.ext import commands
+
 import json
 from random import randint, choice
+import time
+
+current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir) 
+import bot
 
 
 class General(commands.Cog):
