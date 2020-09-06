@@ -30,29 +30,14 @@ class Eval(commands.Cog):
 	@commands.command(name='eval')
 	async def eval_fn(self, ctx, send_result, *, cmd):
 		"""Evaluates input.
-
-		Input is interpreted as newline seperated statements.
-		If the last statement is an expression, that is the return value.
-
 		Usable globals:
 		- `bot`: the bot instance
 		- `discord`: the discord module
 		- `commands`: the discord.ext.commands module
 		- `ctx`: the invokation context
 		- `__import__`: the builtin `__import__` function
-
-		Such that `>eval 1 + 1` gives `2` as the result.
-
-		The following invokation will cause the bot to send the text '9'
-		to the channel of invokation and return '3' as the result of evaluating
-
-		>eval ```
-		a = 1 + 2
-		b = a * 2
-		await ctx.send(a + b)
-		a
-		```
 		"""
+		
 		fn_name = "_eval_expr"
 
 		cmd = cmd.strip("` ")
