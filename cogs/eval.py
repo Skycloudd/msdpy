@@ -28,7 +28,7 @@ class Eval(commands.Cog):
 
 	@commands.is_owner()
 	@commands.command(name='eval')
-	async def eval_fn(self, ctx, send_result, *, cmd):
+	async def eval_fn(self, ctx, *, cmd):
 		"""Evaluates input.
 		Usable globals:
 		- `bot`: the bot instance
@@ -37,7 +37,7 @@ class Eval(commands.Cog):
 		- `ctx`: the invokation context
 		- `__import__`: the builtin `__import__` function
 		"""
-		
+
 		fn_name = "_eval_expr"
 
 		cmd = cmd.strip("` ")
@@ -63,8 +63,7 @@ class Eval(commands.Cog):
 		exec(compile(parsed, filename="<ast>", mode="exec"), env)
 
 		result = (await eval(f"{fn_name}()", env))
-		if send_result == 'true':
-			await ctx.send(f'**result**\n{result}')
+		await ctx.send(f'**result**\n{result}')
 
 
 def setup(bot):
