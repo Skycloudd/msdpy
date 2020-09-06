@@ -28,7 +28,7 @@ class Eval(commands.Cog):
 
 	@commands.is_owner()
 	@commands.command(name='eval')
-	async def eval_fn(self, ctx, send_result='false', *, cmd):
+	async def eval_fn(self, ctx, send_result, *, cmd):
 		"""Evaluates input.
 
 		Input is interpreted as newline seperated statements.
