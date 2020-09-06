@@ -60,10 +60,7 @@ class Eval(commands.Cog):
 			'ctx': ctx,
 			'__import__': __import__
 		}
-		try:
-			exec(compile(parsed, filename="<ast>", mode="exec"), env)
-		except Exception as err:
-			await ctx.send(err)
+		exec(compile(parsed, filename="<ast>", mode="exec"), env)
 
 		result = (await eval(f"{fn_name}()", env))
 		await ctx.send(f'**result**\n{result}')
