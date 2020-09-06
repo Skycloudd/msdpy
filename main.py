@@ -6,7 +6,7 @@ def setup_logging():
 	DATE_FORMAT = '%d/%m/%Y (%H:%M:%S)'
 
 	logger = logging.getLogger('discord')
-	logger.setLevel(logging.ERROR)
+	logger.setLevel(logging.DEBUG)
 
 	file_handler = logging.FileHandler(filename='discord.log', mode='a', encoding='utf-8')
 	file_handler.setFormatter(logging.Formatter(fmt=FORMAT, datefmt=DATE_FORMAT))
