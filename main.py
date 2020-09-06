@@ -10,7 +10,7 @@ def setup_logging():
 
 	file_handler = logging.FileHandler(filename='discord.log', mode='a', encoding='utf-8')
 	file_handler.setFormatter(logging.Formatter(fmt=FORMAT, datefmt=DATE_FORMAT))
-	file_handler.setLevel(logging.INFO)
+	file_handler.setLevel(logging.DEBUG)
 	logger.addHandler(file_handler)
 
 	console_handler = logging.StreamHandler()
