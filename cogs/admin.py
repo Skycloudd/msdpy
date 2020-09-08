@@ -180,7 +180,7 @@ class Admin(commands.Cog):
 			_status = discord.Status.invisible
 
 		await self.bot.change_presence(activity=game, status=status)
-		await ctx.send(f"Activity changed to {activity} with status {status}")
+		await ctx.send(f"Activity changed to {activity} with status {str(status).lower()}")
 
 	@commands.check(is_mod)
 	@commands.command(hidden=True)
