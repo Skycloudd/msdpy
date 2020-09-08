@@ -178,6 +178,9 @@ class Admin(commands.Cog):
 			_status = discord.Status.idle
 		elif status == 'offline' or status == 'invisible':
 			_status = discord.Status.invisible
+		else:
+			await ctx.send(f'{status} is not a valid status!')
+			return
 
 		await self.bot.change_presence(activity=game, status=status)
 		await ctx.send(f"Activity changed to {activity} with status {str(status).lower()}")
