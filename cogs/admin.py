@@ -165,11 +165,11 @@ class Admin(commands.Cog):
 	@commands.command(aliases=['status'])
 	async def activity(self, ctx, *, activity=None):
 		if activity:
-			name = discord.CustomActivity(activity)
+			game = discord.Game(name=activity)
 		else:
 			activity = "Mining away"
-			name = discord.CustomActivity(activity)
-		await self.bot.change_presence(activity=name)
+			game = discord.Game(name=activity)
+		await self.bot.change_presence(activity=game)
 		await ctx.send(f"Activity changed to {activity}")
 
 	@commands.check(is_mod)
