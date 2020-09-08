@@ -163,14 +163,24 @@ class Admin(commands.Cog):
 
 	@commands.check(is_mod)
 	@commands.command(aliases=['status'])
-	async def activity(self, ctx, *, activity=None):
+	async def activity(self, ctx, status, *, activity=None):
 		if activity:
 			game = discord.Game(name=activity)
 		else:
 			activity = "Mining away"
 			game = discord.Game(name=activity)
-		await self.bot.change_presence(activity=game)
-		await ctx.send(f"Activity changed to {activity}")
+
+		if status == 'online':
+			_status = discord.Status.online
+		elif status == 'dnd' or status == 'donotdisturb':
+			_status = discord.Status.dnd
+		elif status == 'idle':
+			_status = discord.Status.idle
+		elif status == 'offline' or status == 'invisible':
+			_status = discord.Status.invisible
+
+		await self.bot.change_presence(activity=game, status=status)
+		await ctx.send(f"Activity changed to {activity} with status {status}")
 
 	@commands.check(is_mod)
 	@commands.command(hidden=True)
