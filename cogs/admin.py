@@ -162,14 +162,14 @@ class Admin(commands.Cog):
 					await ctx.send(f"{i} has been blacklisted.")
 
 	@commands.check(is_mod)
-	@commands.command()
+	@commands.command(aliases=['status'])
 	async def activity(self, ctx, *, activity=None):
 		if activity:
-			game = discord.Game(activity)
+			name = discord.CustomActivity(activity)
 		else:
 			activity = "Mining away"
-			game = discord.Game(activity)
-		await self.bot.change_presence(activity=game)
+			name = discord.CustomActivity(activity)
+		await self.bot.change_presence(activity=name)
 		await ctx.send(f"Activity changed to {activity}")
 
 	@commands.check(is_mod)
