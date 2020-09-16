@@ -63,7 +63,7 @@ class Eval(commands.Cog):
 		exec(compile(parsed, filename="<ast>", mode="exec"), env)
 
 		result = (await eval(f"{fn_name}()", env))
-		await ctx.send(f'**result**\n{result}')
+		#await ctx.send(f'**result**\n{result}')
 
 
 def setup(bot):
