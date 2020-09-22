@@ -8,7 +8,7 @@ class Math(commands.Cog):
 		self.bot = bot
 
 	@commands.command(description='Calculates the sine of an angle in radians or degrees')
-	async def sin(self, ctx, x, rad_deg):
+	async def sin(self, ctx, x, rad_deg = 'rad'):
 		try:
 			x = float(x)
 		except ValueError:
@@ -23,7 +23,7 @@ class Math(commands.Cog):
 			return await ctx.send('second argument must be either \'rad\' or \'deg\'')
 
 	@commands.command(description='Calculates the cosine of an angle in radians or degrees')
-	async def cos(self, ctx, x, rad_deg):
+	async def cos(self, ctx, x, rad_deg = 'rad'):
 		try:
 			x = float(x)
 		except ValueError:
@@ -38,7 +38,7 @@ class Math(commands.Cog):
 			return await ctx.send('second argument must be either \'rad\' or \'deg\'')
 
 	@commands.command(description='Calculates the tangent of an angle in radians or degrees')
-	async def tan(self, ctx, x, rad_deg):
+	async def tan(self, ctx, x, rad_deg = 'rad'):
 		try:
 			x = float(x)
 		except ValueError:
