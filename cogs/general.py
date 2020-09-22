@@ -154,9 +154,9 @@ class General(commands.Cog):
 
 		await ctx.send(f"My prefixes are {output}")
 
-	@commands.command()
+	@commands.command(aliases=['roll', 'random'])
 	@commands.cooldown(1, 20, commands.BucketType.user)
-	async def roll(self, ctx, pool):
+	async def rng(self, ctx, pool):
 		embed = discord.Embed(
 			colour=discord.Colour(0xc500ff)
 		)
