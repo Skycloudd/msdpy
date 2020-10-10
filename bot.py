@@ -66,7 +66,7 @@ class MsdBot(commands.Bot):
 			return
 		if not msg.guild:
 			return
-		if msg.author.id in self.config['blacklist'] and not in self.botmasters:
+		if msg.author.id in self.config['blacklist'] and msg.author.id not in self.botmasters:
 			return
 		await self.process_commands(msg)
 
