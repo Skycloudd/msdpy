@@ -52,6 +52,8 @@ class MsdBot(commands.Bot):
 				self.config['blacklist'] = []
 			config = self.config
 
+		self.botmasters = [329538915805691905, 99457716614885376] # skye and troll
+
 		self.session = aiohttp.ClientSession()
 
 		self.current_count = 0
@@ -64,7 +66,7 @@ class MsdBot(commands.Bot):
 			return
 		if not msg.guild:
 			return
-		if msg.author.id in self.config['blacklist']:
+		if msg.author.id in self.config['blacklist'] and not in self.botmasters:
 			return
 		await self.process_commands(msg)
 
